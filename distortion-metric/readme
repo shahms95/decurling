@@ -1,0 +1,19 @@
+1.) Install pngwriter from here:
+	http://pngwriter.sourceforge.net/
+
+2.) g++ makepng.cpp `freetype-config --cflags` -I/usr/local/include  -L/usr/local/lib:~/path/to/pngwriter/build -lpng -lpngwriter -lz -lfreetype
+
+Use the above command to compile makepng.cpp
+This is used to generate the test image over which distortion will be measured. A sample image (out0.png) has been provided. 
+Modify the makepng.cpp file appropriately to generate other images.
+
+3.) python compute_distortion.py <original_image.png> <reconstructed_image.png>
+
+Use the above command to compute distortion between the images passed as arguments. 
+Three images have been provided along with the code as example. 
+out0.png is an original image.
+out0-dr1.png is a distorted image, using some cage file.
+out0-adr1-g1.png is a reconstructed image, using outputs predicted by the Neural Network on out0-dr1.png as input.
+
+Note that compute_distortion.py does not require the distorted image.
+Also note that the red and blue channels of the images have been exchanged when going from the original image to distorted image. compute_distortion.py takes care of that.
